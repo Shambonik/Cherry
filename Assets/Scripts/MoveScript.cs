@@ -5,10 +5,17 @@ using UnityEngine;
 public class MoveScript : MonoBehaviour
 {
 
-    private Vector3 run = new Vector3(0.2f,0,0);
-    private Vector3 position;
-    private RaycastHit hit;
+    private Vector2 run = new Vector2(0.12f,0);
+    private RaycastHit2D hit;
     private float ySpeed = 0;
+    private bool isGrounded;
+    private Rigidbody2D rb;
+    private float jumpForce = 12;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     /*
      * 0 - d
@@ -18,20 +25,18 @@ public class MoveScript : MonoBehaviour
      * 4 - left mouse button 
      */
 
-    public Vector3 action(List<bool> buttons)
+    public void action(List<bool> buttons)
     {
-        if (!Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1f)) ySpeed -= 0.05f;
-        else if(ySpeed<0) ySpeed = 0;
-        if ((buttons[2]) && (ySpeed == 0)) ySpeed = 0.7f; 
-        position = transform.position + new Vector3(0, ySpeed, 0);
-        if (buttons[0])
+        hit = Physics2D.Raycast(transform.position, -Vector2.up, 1.05f);
+        isGrounded = (hit.transform != null)&&(rb.velocity.y<=0);
+        if (buttons[0]) transform.Translate(run);
+        else if (buttons[1]) transform.Translate(-run);
+
+        if (buttons[2] && isGrounded)
         {
-            position = position + run;
+            Debug.Log("Jump");
+            rb.velocity = new Vector2(0, 0);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        else if (buttons[1])
-        {
-            position = position - run;
-        }
-        return position;
     }
 }

@@ -6,16 +6,17 @@ public class PlayerScript : MonoBehaviour
 {
     private MoveScript moveScript;
     private List<bool> buttons;
-    private Vector3 newPosition;
     private List<List<bool>> history;
     public GameObject copy;
-
+    private bool allowRight = true;
+    private bool allowLeft = true;
+    private Vector2 startPosition;
     
     void Start()
     {
         moveScript = transform.GetComponent<MoveScript>();
-        newPosition = transform.position;
         history = new List<List<bool>>();
+        startPosition = transform.position;
     }
 
     /*
@@ -28,14 +29,27 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, newPosition, 0.6f);
-        buttons = new List<bool> { Input.GetKey("d"), Input.GetKey("a"), Input.GetKey(KeyCode.Space)};
+        buttons = new List<bool> { Input.GetKey("d") && allowRight, Input.GetKey("a") && allowLeft, Input.GetKey(KeyCode.Space) };
         history.Add(buttons);
-        newPosition = moveScript.action(buttons);
+        moveScript.action(buttons);
         if (Input.GetKeyDown("c"))
         {
             GameObject clone = Instantiate(copy);
             clone.GetComponent<CloneScript>().setHistory(history);
+            clone.transform.position = startPosition;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("TRIGGER");
+        if (Input.GetKey("d")) allowRight = false;
+        else if(Input.GetKey("a")) allowLeft= false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        allowLeft = true;
+        allowRight = true;
     }
 }
