@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveScript : MonoBehaviour
@@ -7,7 +6,6 @@ public class MoveScript : MonoBehaviour
 
     private Vector2 run = new Vector2(0.12f,0);
     private RaycastHit2D hit;
-    private float ySpeed = 0;
     private bool isGrounded;
     private Rigidbody2D rb;
     private float jumpForce = 12;
@@ -27,7 +25,7 @@ public class MoveScript : MonoBehaviour
 
     public void action(List<bool> buttons)
     {
-        hit = Physics2D.Raycast(transform.position, -Vector2.up, 1.05f);
+        hit = Physics2D.Raycast(transform.position, /*-Vector2.up*/ Vector2.down, 1.05f);
         isGrounded = (hit.transform != null)&&(rb.velocity.y<=0);
         if (buttons[0]) transform.Translate(run);
         else if (buttons[1]) transform.Translate(-run);

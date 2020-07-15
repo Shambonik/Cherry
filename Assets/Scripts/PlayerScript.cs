@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
@@ -8,8 +7,6 @@ public class PlayerScript : MonoBehaviour
     private List<bool> buttons;
     private List<List<bool>> history;
     public GameObject copy;
-    private bool allowRight = true;
-    private bool allowLeft = true;
     private Vector2 startPosition;
     
     void Start()
@@ -29,27 +26,18 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        buttons = new List<bool> { Input.GetKey("d") && allowRight, Input.GetKey("a") && allowLeft, Input.GetKey(KeyCode.Space) };
+        buttons = new List<bool> { Input.GetKey("d"), Input.GetKey("a"), Input.GetKey(KeyCode.Space) };
         history.Add(buttons);
         moveScript.action(buttons);
-        if (Input.GetKeyDown("c"))
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp("c"))
         {
             GameObject clone = Instantiate(copy);
             clone.GetComponent<CloneScript>().setHistory(history);
             clone.transform.position = startPosition;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("TRIGGER");
-        if (Input.GetKey("d")) allowRight = false;
-        else if(Input.GetKey("a")) allowLeft= false;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        allowLeft = true;
-        allowRight = true;
     }
 }
