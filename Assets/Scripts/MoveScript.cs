@@ -25,7 +25,7 @@ public class MoveScript : MonoBehaviour
 
     public void action(List<bool> buttons)
     {
-        hit = Physics2D.Raycast(transform.position, /*-Vector2.up*/ Vector2.down, 1.05f);
+        hit = Physics2D.Raycast(transform.position, Vector2.down, 1.05f);
         isGrounded = (hit.transform != null)&&(rb.velocity.y<=0);
         if (buttons[0]) transform.Translate(run);
         else if (buttons[1]) transform.Translate(-run);

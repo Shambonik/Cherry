@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Clone
+  - Door
+  - Blocks
+  - Objects
   layers:
   - Default
   - TransparentFX
