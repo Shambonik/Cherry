@@ -5,14 +5,16 @@ public class MoveScript : MonoBehaviour
 {
 
     private Vector2 run = new Vector2(0.12f,0);
-    private RaycastHit2D hit;
+    //private RaycastHit2D hit;
     private bool isGrounded;
     private Rigidbody2D rb;
     private float jumpForce = 12;
+    private CheckGroundedScript checkGrounded;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        checkGrounded = GetComponentInChildren<CheckGroundedScript>();
     }
 
     /*
@@ -25,8 +27,8 @@ public class MoveScript : MonoBehaviour
 
     public void action(List<bool> buttons)
     {
-        hit = Physics2D.Raycast(transform.position, Vector2.down, 1.05f);
-        isGrounded = (hit.transform != null)&&(rb.velocity.y<=0);
+        //hit = Physics2D.Raycast(transform.position, Vector2.down, 1.05f);
+        isGrounded = checkGrounded.check();
         if (buttons[0]) transform.Translate(run);
         else if (buttons[1]) transform.Translate(-run);
 
