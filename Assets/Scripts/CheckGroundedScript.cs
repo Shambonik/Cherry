@@ -16,7 +16,7 @@ public class CheckGroundedScript : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(TriggerList.Count);
+        //Debug.Log(TriggerList.Count);
         if (!TriggerList.Contains(other)) TriggerList.Add(other);
     }
 
