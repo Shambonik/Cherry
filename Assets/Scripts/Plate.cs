@@ -27,7 +27,7 @@ public class Plate : MonoBehaviour
     {
         countObjectsInButton--;
     }
-
+    
     private void Action(){
         for(int i = 0; i < objects.Count; i++)
         {
