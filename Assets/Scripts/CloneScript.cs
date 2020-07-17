@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class CloneScript : MonoBehaviour
 {
-    private List<List<bool>> history;
+    private List<HistoryElement> history;
     private int iteration;
-    private MoveScript moveScript;
+    private ActionScript actionScript;
+    private HistoryElement historyMoment;
+    private CheckCollidersScript checkCollidersScript;
+    private int errors = 0;
     // Start is called before the first frame update
     void Start()
     {
-        moveScript = transform.GetComponent<MoveScript>();
+        actionScript = transform.GetComponent<ActionScript>();
         iteration = 0;
-        if (history == null) history = new List<List<bool>>();
+        if (history == null) history = new List<HistoryElement>();
+        checkCollidersScript = GetComponentInChildren<CheckCollidersScript>();
     }
 
     // Update is called once per frame
@@ -20,14 +24,56 @@ public class CloneScript : MonoBehaviour
     {
         if (history.Count != 0)
         {
-            if (iteration < history.Count) moveScript.action(history[iteration++]);
+            if (iteration < history.Count)
+            {
+                historyMoment = history[iteration];
+                if (!historyMoment.getJump() && !collidersAreSimilar())
+                {
+                    if (errors > 1) Debug.Log("МИР СЛОМАЛСЯ");
+                    else errors++;
+                }
+                else errors = 0;
+                transform.position = historyMoment.getPosition();
+                if (historyMoment.getF())
+                {
+                    Debug.Log("HERE");
+                    actionScript.action();
+                }
+                iteration++;
+            }
             else Destroy(transform.gameObject);
         }
     }
 
-    public void setHistory(List<List<bool>> history)
+    public void setHistory(List<HistoryElement> history)
     {
-        this.history = new List<List<bool>>(history);
+        this.history = new List<HistoryElement>(history);
+    }
+
+    private bool collidersAreSimilar()
+    {
+        if (checkCollidersScript.getColliders().Count != historyMoment.getColliders().Count) {
+            foreach(Collider2D coll in checkCollidersScript.getColliders())
+            {
+                Debug.Log(coll);
+            }
+            Debug.Log(checkCollidersScript.getColliders().Count + " : " + historyMoment.getColliders().Count);
+            foreach (Collider2D coll in historyMoment.getColliders())
+            {
+                Debug.Log(coll);
+            }
+            return false;
+        }
+        foreach (Collider2D coll in checkCollidersScript.getColliders())
+        {
+            if (!historyMoment.getColliders().Contains(coll))
+            {
+
+                Debug.Log(coll);
+                return false;
+            }
+        }
+        return true;
     }
 
 }

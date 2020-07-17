@@ -4,38 +4,36 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public  List<GameObject> objects = new List<GameObject>();
-    private bool isActivity = false;
+    //public  List<GameObject> objects = new List<GameObject>();
+    private bool activated = false;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(isActivity && Input.GetKeyUp("f"))
-        {
-            for(int i = 0; i < objects.Count; i++)
-            {
-                string tag = objects[i].gameObject.tag;
-                switch(tag)
-                {
-                    case "Door":
-                        objects[i].GetComponent<Door>().Action();
-                        break;
-                }
-            }
-        }
-    }
-   
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Player") isActivity = true;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.tag == "Player") isActivity = false;
+    public void setActivated(bool activated)
+    {
+        this.activated = activated;
     }
+
+    public bool getActivated()
+    {
+        return activated;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") other.gameObject.GetComponent<ActionScript>().setButton (transform.gameObject);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") other.gameObject.GetComponent<ActionScript>().deleteButton();
+    }
+
 }

@@ -26,7 +26,8 @@ public class Door : MonoBehaviour
         } else {
             int hits = Physics2D.Raycast(transform.position - transform.up - new Vector3(0 , 0.01f),
                 Vector2.down, contactFilter, this.hits, shiftUp);
-            if(hits == 0){
+            if (hits == 0)
+            {
                 transform.position = Vector2.Lerp(transform.position, closePosition, speed * Time.deltaTime);
             }
         }

@@ -8,6 +8,8 @@ TagManager:
   - Door
   - Blocks
   - Objects
+  - CheckColliders
+  - CheckGrounded
   layers:
   - Default
   - TransparentFX

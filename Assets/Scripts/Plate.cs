@@ -20,12 +20,13 @@ public class Plate : MonoBehaviour
    
     void OnTriggerEnter2D(Collider2D other)
     {
-        countObjectsInButton++;
+        if(other.gameObject.tag != "CheckColliders") countObjectsInButton++;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        countObjectsInButton--;
+        if (other.gameObject.tag != "CheckColliders") countObjectsInButton--;
+        Debug.Log(other.tag);
     }
     
     private void Action(){
