@@ -10,7 +10,7 @@ TagManager:
   - Objects
   - CheckColliders
   - CheckGrounded
-  - Boxes
+  - RememberPoint
   layers:
   - Default
   - TransparentFX

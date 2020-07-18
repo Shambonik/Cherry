@@ -18,6 +18,8 @@ public class PlayerScript : MonoBehaviour
     private float jumpForce = 12;
     private CheckGroundedScript checkGrounded;
     private CheckCollidersScript checkCollidersScript;
+    private bool remembering = false;
+    private rememberPointScript remPoint;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         checkGrounded = GetComponentInChildren<CheckGroundedScript>();
         checkCollidersScript = GetComponentInChildren<CheckCollidersScript>();
+        remPoint = GameObject.FindGameObjectWithTag("RememberPoint").GetComponent<rememberPointScript>();
     }
 
 
@@ -37,7 +40,7 @@ public class PlayerScript : MonoBehaviour
         //action(buttons);
 
         isGrounded = checkGrounded.check();
-        history.Add(new HistoryElement(transform.position, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders())));
+        if(remembering) history.Add(new HistoryElement(transform.position, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders())));
         if (Input.GetKey("d")) transform.Translate(run);
         else if (Input.GetKey("a")) transform.Translate(-run);
         else if (Input.GetKey("f"))
@@ -56,15 +59,26 @@ public class PlayerScript : MonoBehaviour
 
     }
 
+    public void startRemember()
+    {
+        remembering = true;
+    }
+
     void Update()
     {
         if (Input.GetKeyUp("c"))
         {
-            GameObject clone = Instantiate(copy);
-            clone.GetComponent<CloneScript>().setHistory(history);
-            clone.transform.position = startPosition;
+            if (remembering)
+            {
+                GameObject clone = Instantiate(copy);
+                clone.GetComponent<CloneScript>().setHistory(history);
+                //clone.transform.position = startPosition;
+                transform.position = startPosition;
+                remembering = false;
+                history = new List<HistoryElement>();
+                remPoint.restart();
+            }
+            else Debug.Log("Перемещение во времени запрещено");
         }
     }
-
-    
 }
