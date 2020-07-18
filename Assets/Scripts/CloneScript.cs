@@ -58,7 +58,7 @@ public class CloneScript : MonoBehaviour
 
     public void restart()
     {
-        if (startIndex >= history.Count) Destroy(transform);
+        if ((startIndex>0)&&(startIndex >= history.Count)) Destroy(transform.gameObject);
         iteration = startIndex;
     }
 

@@ -68,13 +68,17 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetKeyUp("c"))
         {
-            GameObject clone = Instantiate(copy);
-            clone.GetComponent<CloneScript>().setHistory(history);
-            //clone.transform.position = startPosition;
-            transform.position = startPosition;
-            remembering = false;
-            history = new List<HistoryElement>();
-            remPoint.restart();
+            if (remembering)
+            {
+                GameObject clone = Instantiate(copy);
+                clone.GetComponent<CloneScript>().setHistory(history);
+                //clone.transform.position = startPosition;
+                transform.position = startPosition;
+                remembering = false;
+                history = new List<HistoryElement>();
+                remPoint.restart();
+            }
+            else Debug.Log("Перемещение во времени запрещено");
         }
     }
 }
