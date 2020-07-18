@@ -10,12 +10,14 @@ public class ActionScript : MonoBehaviour
     private CheckGroundedScript checkGrounded;
     private GameObject button;
     private GameObject box;
+    private Transform boxtaker;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         checkGrounded = GetComponentInChildren<CheckGroundedScript>();
         button = null;
+        boxtaker = transform.Find("boxtaker");
     }
 
     /*
@@ -24,13 +26,28 @@ public class ActionScript : MonoBehaviour
      */
      public void action()
      {
+        Debug.Log("Action");
         if (button != null)
         {
             button.GetComponent<Button>().setActivated(!button.GetComponent<Button>().getActivated());
         }
-        if (box != null)
+        else if (box != null)
         {
-
+            Debug.Log("Box");
+            if (!box.GetComponent<Box>().getTaken())
+            {
+                boxtaker.GetComponent<BoxCollider2D>().enabled = true;
+                box.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
+                box.GetComponent<Box>().setBoxtaker(boxtaker);
+                box.GetComponent<Box>().setTaken(true);
+            }
+            else
+            {
+                boxtaker.GetComponent<BoxCollider2D>().enabled = false;
+                box.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
+                box.GetComponent<Box>().setBoxtaker(null);
+                box.GetComponent<Box>().setTaken(false);
+            }
         }
      }
 
@@ -43,5 +60,20 @@ public class ActionScript : MonoBehaviour
     {
         button = null;
     }
-   
+
+    public void setBox(GameObject box)
+    {
+        this.box = box;
+    }
+
+    public GameObject getBox()
+    {
+        return box;
+    }
+
+    public void deleteBox()
+    {
+        box = null;
+    }
+
 }

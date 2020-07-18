@@ -28,6 +28,12 @@ public class Plate : MonoBehaviour
         if (other.gameObject.tag != "CheckColliders") countObjectsInButton--;
         Debug.Log(other.tag);
     }
+
+    public void restart()
+    {
+        countObjectsInButton = 0;
+        lastCountObjectsInButton = 0;
+    }
     
     private void Action(){
         for(int i = 0; i < objects.Count; i++)

@@ -37,6 +37,9 @@ public class RememberObject : MonoBehaviour
             case "Door":
                 GetComponent<Door>().setIsOpen(activated);
                 break;
+            case "Plate":
+                GetComponent<Plate>().restart();
+                break;
         }
     }
 }

@@ -30,7 +30,7 @@ public class CheckGroundedScript : MonoBehaviour
     {
         foreach (Collider2D collider in TriggerList)
         {
-            if (collider.tag == "Blocks") return true;
+            if (collider.tag == "Blocks" || collider.tag == "Box") return true;
         }
         return false;
     }

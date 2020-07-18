@@ -11,6 +11,9 @@ TagManager:
   - CheckColliders
   - CheckGrounded
   - RememberPoint
+  - Boxes
+  - Plate
+  - Box
   layers:
   - Default
   - TransparentFX
