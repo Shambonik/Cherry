@@ -9,6 +9,7 @@ public class ActionScript : MonoBehaviour
     private Rigidbody2D rb;
     private CheckGroundedScript checkGrounded;
     private GameObject button;
+    private GameObject box;
 
     private void Start()
     {
@@ -26,6 +27,10 @@ public class ActionScript : MonoBehaviour
         if (button != null)
         {
             button.GetComponent<Button>().setActivated(!button.GetComponent<Button>().getActivated());
+        }
+        if (box != null)
+        {
+
         }
      }
 

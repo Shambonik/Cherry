@@ -28,12 +28,14 @@ public class Button : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") other.gameObject.GetComponent<ActionScript>().setButton (transform.gameObject);
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") 
+            other.gameObject.GetComponent<ActionScript>().setButton (transform.gameObject);
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") other.gameObject.GetComponent<ActionScript>().deleteButton();
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") 
+            other.gameObject.GetComponent<ActionScript>().deleteButton();
     }
 
 }
