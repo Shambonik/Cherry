@@ -33,6 +33,16 @@ public class Door : MonoBehaviour
         }
     }
 
+    public bool getIsOpen()
+    {
+        return isOpen;
+    }
+
+    public void setIsOpen(bool open)
+    {
+        isOpen = open;
+    }
+
     public void Action()
     {
         isOpen = !isOpen;

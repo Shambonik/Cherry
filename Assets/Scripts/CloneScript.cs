@@ -10,6 +10,7 @@ public class CloneScript : MonoBehaviour
     private HistoryElement historyMoment;
     private CheckCollidersScript checkCollidersScript;
     private int errors = 0;
+    private int startIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,13 +42,24 @@ public class CloneScript : MonoBehaviour
                 }
                 iteration++;
             }
-            else Destroy(transform.gameObject);
+            else transform.gameObject.SetActive(false);
         }
     }
 
     public void setHistory(List<HistoryElement> history)
     {
         this.history = new List<HistoryElement>(history);
+    }
+
+    public void setStartIndex()
+    {
+        startIndex = iteration;
+    }
+
+    public void restart()
+    {
+        if (startIndex >= history.Count) Destroy(transform);
+        iteration = startIndex;
     }
 
     private bool collidersAreSimilar()
