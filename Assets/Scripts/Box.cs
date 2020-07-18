@@ -45,10 +45,16 @@ public class Box : MonoBehaviour
         //}
 
 
+
         if(isTaken)
         {
             transform.parent.position = boxtaker.position;
         }
+    }
+
+    public void rigidbodySetDynamic()
+    {
+        rigidbody.bodyType = RigidbodyType2D.Dynamic;
     }
 
     public void setTaken(bool taken)

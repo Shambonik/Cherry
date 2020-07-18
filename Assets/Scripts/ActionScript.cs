@@ -47,6 +47,7 @@ public class ActionScript : MonoBehaviour
                 box.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
                 box.GetComponent<Box>().setBoxtaker(null);
                 box.GetComponent<Box>().setTaken(false);
+                box.GetComponent<Box>().rigidbodySetDynamic();
             }
         }
      }
