@@ -70,8 +70,8 @@ public class Box : MonoBehaviour
             string tag = other.gameObject.tag;
             if (tag == "Player" || tag == "Clone")
             {
-                cosmonaut.transform.Find("Text").gameObject.SetActive(true);
                 cosmonaut = other.gameObject.GetComponent<ActionScript>();
+                cosmonaut.transform.Find("Text").gameObject.SetActive(true);
                 if (cosmonaut.getBox() == null)
                 {
                     cosmonaut.setBox(transform.gameObject);
