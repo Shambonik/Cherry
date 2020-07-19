@@ -11,21 +11,20 @@ public class CloneScript : MonoBehaviour
     private CheckCollidersScript checkCollidersScript;
     private int errors = 0;
     private int startIndex = 0;
-    private CameraScript camera;
     Transform cosmonaut;
-
+    private CameraScript camera;
     private GameObject oldBox;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>();
         actionScript = transform.GetComponent<ActionScript>();
         iteration = 0;
         if (history == null) history = new List<HistoryElement>();
         checkCollidersScript = GetComponentInChildren<CheckCollidersScript>();
         cosmonaut = transform.Find("cosmonaut").transform;
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>();
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class CloneScript : MonoBehaviour
                 historyMoment = history[iteration];
                 if (!historyMoment.getJump() && !collidersAreSimilar())
                 {
-                    if (errors > 10) camera.Death(transform.gameObject);
+                    if (errors > 4) camera.Death(transform.gameObject);
                     else errors++;
                 }
                 else errors = 0;
@@ -48,6 +47,7 @@ public class CloneScript : MonoBehaviour
                 if (historyMoment.getF())
                 {
                     actionScript.action();
+                    Debug.Log("КОРОБКА");
                 }
                 iteration++;
             }
@@ -55,13 +55,7 @@ public class CloneScript : MonoBehaviour
             {
                 if (actionScript.getBox() != null)
                 {
-
-                    actionScript.getBox().GetComponent<Box>().setTaken(false);
-                    actionScript.getBox().GetComponent<Box>().setBoxtaker(null);
-                    actionScript.getBox().GetComponentInParent<Rigidbody2D>().freezeRotation = false;
-                    actionScript.getBox().transform.parent.GetComponent<BoxCollider2D>().enabled = true;
-                    actionScript.setBoxtakerEnabled(false);
-                    actionScript.deleteBox();
+                    actionScript.throwBox();
                 }
                 transform.gameObject.SetActive(false);
             }
@@ -92,12 +86,7 @@ public class CloneScript : MonoBehaviour
         iteration = startIndex;
         if (oldBox != null)
         {
-            actionScript.setBox(oldBox);
-            actionScript.getBox().GetComponent<Box>().setTaken(true);
-            actionScript.getBox().GetComponent<Box>().setBoxtaker(actionScript.getBoxtaker());
-            actionScript.getBox().GetComponentInParent<Rigidbody2D>().freezeRotation = true;
-            actionScript.getBox().transform.parent.GetComponent<BoxCollider2D>().enabled = false;
-            actionScript.setBoxtakerEnabled(true);
+            actionScript.throwBox();
         }
     }
 

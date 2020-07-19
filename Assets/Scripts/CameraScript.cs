@@ -53,7 +53,11 @@ public class CameraScript : MonoBehaviour
             startTime = Time.time;
             death = true;
             player.GetComponent<PlayerScript>().enabled = false;
-            target.GetComponent<CloneScript>().enabled = false;
+            try
+            {
+                target.GetComponent<CloneScript>().enabled = false;
+            }
+            catch (System.Exception e) { }
             Debug.Log("СМЕРТЬ МИРА");
         }
     }

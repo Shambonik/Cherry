@@ -46,13 +46,7 @@ public class ActionScript : MonoBehaviour
             }
             else
             {
-                boxtaker.GetComponent<BoxCollider2D>().enabled = false;
-                box.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
-                box.GetComponent<Box>().setBoxtaker(null);
-                box.GetComponent<Box>().setTaken(false);
-                box.GetComponent<BoxCollider2D>().enabled = true;
-                box.GetComponentInParent<Rigidbody2D>().freezeRotation = false;
-                box.GetComponent<Box>().rigidbodySetDynamic();
+                throwBox();
             }
         }
      }
@@ -90,6 +84,21 @@ public class ActionScript : MonoBehaviour
     public void deleteBox()
     {
         box = null;
+    }
+
+
+    public void throwBox()
+    {
+        boxtaker.GetComponent<BoxCollider2D>().enabled = false;
+        if (box != null)
+        {
+            box.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
+            box.GetComponent<Box>().setBoxtaker(null);
+            box.GetComponent<Box>().setTaken(false);
+            box.GetComponent<BoxCollider2D>().enabled = true;
+            box.GetComponentInParent<Rigidbody2D>().freezeRotation = false;
+            box.GetComponent<Box>().rigidbodySetDynamic();
+        }
     }
 
 }

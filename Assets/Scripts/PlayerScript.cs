@@ -80,9 +80,13 @@ public class PlayerScript : MonoBehaviour
             if (remembering)
             {
                 GameObject clone = Instantiate(copy);
+                clone.transform.position = remPoint.transform.position;
                 clone.GetComponent<CloneScript>().setHistory(history);
                 //clone.transform.position = startPosition;
-                actionScript.setBoxtakerEnabled(false);
+                if (actionScript.getBox() != null)
+                {
+                    actionScript.throwBox();
+                }
                 transform.position = startPosition;
                 remembering = false;
                 history = new List<HistoryElement>();
