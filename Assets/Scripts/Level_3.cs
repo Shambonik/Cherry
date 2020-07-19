@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level_2 : MonoBehaviour
+public class Level_3 : MonoBehaviour
 {
 
     public GameObject button1;
+    public GameObject button2;
     public GameObject door1;
     public GameObject door2;
     private bool door1Status = false;
@@ -24,6 +25,9 @@ public class Level_2 : MonoBehaviour
         {
             door1.GetComponent<Door>().Action();
             door1Status = !door1Status;
+        }
+        if (button2.GetComponent<Button>().getActivated() != door2Status)
+        {
             door2.GetComponent<Door>().Action();
             door2Status = !door2Status;
         }
