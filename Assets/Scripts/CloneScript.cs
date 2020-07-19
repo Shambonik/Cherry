@@ -11,6 +11,7 @@ public class CloneScript : MonoBehaviour
     private CheckCollidersScript checkCollidersScript;
     private int errors = 0;
     private int startIndex = 0;
+    private CameraScript camera;
     Transform cosmonaut;
 
     private GameObject oldBox;
@@ -19,6 +20,7 @@ public class CloneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>();
         actionScript = transform.GetComponent<ActionScript>();
         iteration = 0;
         if (history == null) history = new List<HistoryElement>();
@@ -36,7 +38,7 @@ public class CloneScript : MonoBehaviour
                 historyMoment = history[iteration];
                 if (!historyMoment.getJump() && !collidersAreSimilar())
                 {
-                    if (errors > 1) Debug.Log("МИР СЛОМАЛСЯ");
+                    if (errors > 10) camera.Death(transform.gameObject);
                     else errors++;
                 }
                 else errors = 0;

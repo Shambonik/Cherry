@@ -5,8 +5,9 @@ using UnityEngine;
 public class CheckCollidersScript : MonoBehaviour
 {
     private List<Collider2D> colliders;
-    private Vector3 rotation = new Vector3(0, 0, 45);
+    private Vector3 rotation = new Vector3(0, 0, 30);
     private List<string> BlockTags = new List<string> { "Blocks", "Door" };
+    private float len = 2.5f;
     private Collider2D cosmonautCollider;
     // Start is called before the first frame update
     void Start()
@@ -17,37 +18,25 @@ public class CheckCollidersScript : MonoBehaviour
     public List<Collider2D> getColliders()
     {
         colliders = new List<Collider2D>();
-        for(int i = 0; i<8; i++)
+        for(int i = 0; i<12; i++)
         {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.up, 3f);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.up, len);
             Debug.DrawRay(transform.position, transform.up, Color.red);
             for (int j = 0; j < hits.Length; j++)
             {
                 if (!BlockTags.Contains(hits[j].collider.tag))
                 {
-                    if ((hits[j].collider != cosmonautCollider) && (hits[j].collider.transform.parent==null || hits[j].collider.transform.parent.parent || (hits[j].collider.transform.parent.parent != cosmonautCollider)) && (!colliders.Contains(hits[j].collider))) colliders.Add(hits[j].collider);
+                    if ((hits[j].collider != cosmonautCollider) && (hits[j].collider.transform.parent == null || (hits[j].collider.transform.parent != transform.parent)) && (!colliders.Contains(hits[j].collider))) colliders.Add(hits[j].collider);
                 }
-                else break;
+                else
+                {
+                    if (!colliders.Contains(hits[j].collider)) colliders.Add(hits[j].collider);
+                    break;
+                }
             }
             transform.Rotate(rotation);
         }
         return colliders;
     }
-
-    //// Update is called once per frame
-    //public List<Collider2D> getColliders()
-    //{
-    //    return colliders;
-    //}
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (!colliders.Contains(other) && other.transform!=transform.parent && other.tag!= "CheckGrounded") colliders.Add(other);
-    //}
-
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (colliders.Contains(other)) colliders.Remove(other);
-    //}
    
 }

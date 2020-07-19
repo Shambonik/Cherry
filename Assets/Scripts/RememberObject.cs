@@ -23,6 +23,9 @@ public class RememberObject : MonoBehaviour
             case "Door":
                 activated = GetComponent<Door>().getIsOpen();
                 break;
+            case "Plate":
+                GetComponent<Plate>().remember();
+                break;
             case "Box":
                 activated = GetComponentInChildren<Box>().getTaken();
                 boxtaker = GetComponentInChildren<Box>().getBoxtaker();

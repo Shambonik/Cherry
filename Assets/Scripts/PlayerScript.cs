@@ -6,7 +6,7 @@ public class PlayerScript : MonoBehaviour
     private ActionScript actionScript;
     //private List<bool> history;
     public GameObject copy;
-    private Vector2 startPosition;
+    private Vector3 startPosition;
     private bool fPrevious = false;
     private List<HistoryElement> history;
 

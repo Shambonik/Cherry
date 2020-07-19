@@ -17,6 +17,7 @@ TagManager:
   - Boxtaker
   - boxtaker
   - ClonesGroup
+  - DeathPanel
   layers:
   - Default
   - TransparentFX
