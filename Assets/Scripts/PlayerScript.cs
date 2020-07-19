@@ -10,9 +10,8 @@ public class PlayerScript : MonoBehaviour
     private bool fPrevious = false;
     private List<HistoryElement> history;
 
-
-    private Vector2 run = new Vector2(0.12f, 0);
-    //private RaycastHit2D hit;
+    private Transform cosmonaut;
+    private Vector2 run = new Vector2(0.1f, 0);
     private bool isGrounded;
     private Rigidbody2D rb;
     private float jumpForce = 12;
@@ -24,6 +23,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        cosmonaut = transform.Find("cosmonaut").transform;
         actionScript = transform.GetComponent<ActionScript>();
         history = new List<HistoryElement>();
         startPosition = transform.position;
@@ -33,7 +33,6 @@ public class PlayerScript : MonoBehaviour
         remPoint = GameObject.FindGameObjectWithTag("RememberPoint").GetComponent<rememberPointScript>();
     }
 
-
     void FixedUpdate()
     {
         //buttons = new List<bool> { , ,  };
@@ -42,12 +41,21 @@ public class PlayerScript : MonoBehaviour
 
         isGrounded = checkGrounded.check();
         if(remembering) history.Add(new HistoryElement(transform.position, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders())));
-        if (Input.GetKey("d")) transform.Translate(run);
-        else if (Input.GetKey("a")) transform.Translate(-run);
-        else if (Input.GetKey("f"))
-        {
-            if(!fPrevious) actionScript.action();
-            fPrevious = true;
+        if (Input.GetKey("d")) {
+            cosmonaut.rotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.Translate(run);
+        } else {
+            if (Input.GetKey("a"))
+            {
+                cosmonaut.rotation = Quaternion.Euler(0f, 180f, 0f);
+                transform.Translate(-run);
+            } else {
+                if (Input.GetKey("f"))
+                {
+                    if(!fPrevious) actionScript.action();
+                    fPrevious = true;
+                }
+            }
         }
 
         if (!Input.GetKey("f")) fPrevious = false;
