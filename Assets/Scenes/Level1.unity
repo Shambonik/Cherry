@@ -3032,7 +3032,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: ' THE WORLD
+  m_Text: 'THE WORLD
 
     HAS BEEN DESTROYED'
 --- !u!222 &837773095
