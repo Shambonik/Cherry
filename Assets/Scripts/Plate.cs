@@ -25,8 +25,7 @@ public class Plate : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag != "CheckColliders") countObjectsInButton--;
-        Debug.Log(other.tag);
+        if (other.gameObject.tag != "CheckColliders" && countObjectsInButton>0) countObjectsInButton--;
     }
 
     public void restart()

@@ -11,6 +11,7 @@ public class CloneScript : MonoBehaviour
     private CheckCollidersScript checkCollidersScript;
     private int errors = 0;
     private int startIndex = 0;
+    Transform cosmonaut;
 
     private GameObject oldBox;
 
@@ -22,6 +23,7 @@ public class CloneScript : MonoBehaviour
         iteration = 0;
         if (history == null) history = new List<HistoryElement>();
         checkCollidersScript = GetComponentInChildren<CheckCollidersScript>();
+        cosmonaut = transform.Find("cosmonaut").transform;
     }
 
     // Update is called once per frame
@@ -39,6 +41,8 @@ public class CloneScript : MonoBehaviour
                 }
                 else errors = 0;
                 transform.position = historyMoment.getPosition();
+                cosmonaut.rotation = historyMoment.getRotation();
+                Debug.Log("Rot" + historyMoment.getRotation().eulerAngles);
                 if (historyMoment.getF())
                 {
                     actionScript.action();

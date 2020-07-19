@@ -8,10 +8,12 @@ public struct HistoryElement
     private bool fPressed;
     private bool jump;
     private List<Collider2D> colliders;
+    private Quaternion rotation;
 
-    public HistoryElement(Vector2 pos, bool f, bool jump, List<Collider2D> coll)
+    public HistoryElement(Vector2 pos, Quaternion rot, bool f, bool jump, List<Collider2D> coll)
     {
         position = pos;
+        rotation = rot;
         fPressed = f;
         colliders = coll;
         this.jump = jump;
@@ -35,5 +37,10 @@ public struct HistoryElement
     public bool getJump()
     {
         return jump;
+    }
+
+    public Quaternion getRotation()
+    {
+        return rotation;
     }
 }

@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
         //action(buttons);
 
         isGrounded = checkGrounded.check();
-        if(remembering) history.Add(new HistoryElement(transform.position, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders())));
+        if(remembering) history.Add(new HistoryElement(transform.position, cosmonaut.rotation, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders())));
         if (Input.GetKey("d")) {
             cosmonaut.rotation = Quaternion.Euler(0f, 0f, 0f);
             transform.Translate(run);
