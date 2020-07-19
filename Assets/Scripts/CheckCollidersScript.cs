@@ -7,9 +7,11 @@ public class CheckCollidersScript : MonoBehaviour
     private List<Collider2D> colliders;
     private Vector3 rotation = new Vector3(0, 0, 45);
     private List<string> BlockTags = new List<string> { "Blocks", "Door" };
+    private Collider2D cosmonautCollider;
     // Start is called before the first frame update
     void Start()
     {
+        cosmonautCollider = transform.parent.parent.GetComponent<Collider2D>();
     }
 
     public List<Collider2D> getColliders()
@@ -23,7 +25,7 @@ public class CheckCollidersScript : MonoBehaviour
             {
                 if (!BlockTags.Contains(hits[j].collider.tag))
                 {
-                    if ((hits[j].collider.tag != transform.parent.tag) && (hits[j].collider.transform.parent==null || hits[j].collider.transform.parent.parent == null || (hits[j].collider.transform.parent.parent.tag != transform.parent.tag)) && (!colliders.Contains(hits[j].collider))) colliders.Add(hits[j].collider);
+                    if ((hits[j].collider != cosmonautCollider) && (hits[j].collider.transform.parent==null || hits[j].collider.transform.parent.parent || (hits[j].collider.transform.parent.parent != cosmonautCollider)) && (!colliders.Contains(hits[j].collider))) colliders.Add(hits[j].collider);
                 }
                 else break;
             }

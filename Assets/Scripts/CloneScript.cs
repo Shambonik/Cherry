@@ -117,8 +117,16 @@ public class CloneScript : MonoBehaviour
         {
             if (!historyMoment.getColliders().Contains(coll))
             {
-
-                Debug.Log(coll);
+                foreach (Collider2D colli in checkCollidersScript.getColliders())
+                {
+                    Debug.Log(colli);
+                }
+                Debug.Log(checkCollidersScript.getColliders().Count + " : " + historyMoment.getColliders().Count);
+                foreach (Collider2D colli in historyMoment.getColliders())
+                {
+                    Debug.Log(colli);
+                }
+                //Debug.Log(coll);
                 return false;
             }
         }
