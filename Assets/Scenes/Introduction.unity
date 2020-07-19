@@ -4700,11 +4700,11 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865874509}
-  m_Text: "\u041E \u043D\u0435\u0442! \u0418\u0441\u043A\u0443\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439
-    \u0438\u043D\u0442\u0435\u043B\u0435\u043A\u0442\n\u0437\u0430\u0445\u0432\u0430\u0442\u0438\u043B
-    \u043A\u043E\u0440\u0430\u0431\u043B\u044C\n\u0438 \u0447\u0442\u043E\u0431\u044B
-    \u0432\u044B \u043D\u0435 \u043F\u043E\u043C\u0435\u0448\u0430\u043B\u0438 \u0435\u043C\u0443\n\u043F\u043E\u0441\u0442\u0430\u0432\u0438\u043B
-    \u043D\u0435\u043F\u0440\u043E\u0445\u043E\u0434\u0438\u043C\u044B\u0435 \u0443\u0440\u043E\u0432\u043D\u0438"
+  m_Text: "\u041E \u043D\u0435\u0442! \u0418\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439
+    \u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442\n\u0437\u0430\u0445\u0432\u0430\u0442\u0438\u043B
+    \u043A\u043E\u0440\u0430\u0431\u043B\u044C. \u041E\u043D \u043F\u043E\u0441\u0442\u0440\u043E\u0438\u043B\n\u043D\u0435\u043F\u0440\u043E\u0445\u043E\u0434\u0438\u043C\u044B\u0435
+    \u0443\u0440\u043E\u0432\u043D\u0438,\n\u0447\u0442\u043E\u0431\u044B \u0432\u044B
+    \u043D\u0435 \u043F\u043E\u043C\u0435\u0448\u0430\u043B\u0438 \u0435\u043C\u0443"
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -5517,7 +5517,8 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670391531}
-  m_Text: "\u0412\u0430\u043C \u0431\u044B \u0441\u0435\u0439\u0447\u0430\u0441 \u043D\u0435\u043F\u043E\u043C\u0435\u0448\u0430\u043B\u0430\n\u0447\u0430\u0448\u0435\u0447\u043A\u0430
+  m_Text: "\u0412\u0430\u043C \u0431\u044B \u0441\u0435\u0439\u0447\u0430\u0441 \u043D\u0435
+    \u043F\u043E\u043C\u0435\u0448\u0430\u043B\u0430\n\u0447\u0430\u0448\u0435\u0447\u043A\u0430
     \u043A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u043E\u0433\u043E \n\u043A\u043E\u0444\u0435"
   m_OffsetZ: 0
   m_CharacterSize: 1
@@ -7896,7 +7897,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096496742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.53, y: 1.73, z: -3}
+  m_LocalPosition: {x: 34.97, y: 1.73, z: -3}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 799681775}
@@ -7913,8 +7914,8 @@ TextMesh:
   m_Text: "\u041F\u043E\u0445\u043E\u0436\u0435, \u0447\u0442\u043E\u0431\u044B \u043F\u0440\u043E\u0439\u0442\u0438
     \u0438\u0445 \u043F\u0440\u0438\u0434\u0451\u0442\u0441\u044F\n\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C
     \u0442\u0435\u043B\u0435\u043F\u043E\u0440\u0442 \u0432\u043E \u0432\u0440\u0435\u043C\u0435\u043D\u0438.\n\u0413\u043B\u0430\u0432\u043D\u043E\u0435
-    \u043D\u0435 \u0432\u0441\u0442\u0435\u0442\u0438\u0442\u044C\u0441\u044F \u0441
-    \u0441\u0430\u043C\u0438\u043C \u0441\u043E\u0431\u043E\u0439\n\u0438 \u043D\u0435
+    - \u043D\u0435 \u0432\u0441\u0442\u0440\u0435\u0442\u0438\u0442\u044C\u0441\u044F
+    \u0441 \u0441\u0430\u043C\u0438\u043C \u0441\u043E\u0431\u043E\u0439\n\u0438 \u043D\u0435
     \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B
     \u0434\u043E \u0442\u043E\u0433\u043E\n\u043A\u0430\u043A \u044D\u0442\u043E \u0441\u0434\u0435\u043B\u0430\u043B
     \u044F \u0438\u0437 \u043F\u0440\u043E\u0448\u043B\u043E\u0433\u043E"
@@ -8135,6 +8136,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4404286540238020296, guid: c07d1f0dd18cc7740acd6bb252003b0a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404286540238020296, guid: c07d1f0dd18cc7740acd6bb252003b0a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4404286540238020296, guid: c07d1f0dd18cc7740acd6bb252003b0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896649230164750294, guid: c07d1f0dd18cc7740acd6bb252003b0a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896649230164750294, guid: c07d1f0dd18cc7740acd6bb252003b0a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896649230164750294, guid: c07d1f0dd18cc7740acd6bb252003b0a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7982478539678852492, guid: c07d1f0dd18cc7740acd6bb252003b0a,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -8196,36 +8227,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7325233747866988349, guid: c07d1f0dd18cc7740acd6bb252003b0a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404286540238020296, guid: c07d1f0dd18cc7740acd6bb252003b0a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404286540238020296, guid: c07d1f0dd18cc7740acd6bb252003b0a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4404286540238020296, guid: c07d1f0dd18cc7740acd6bb252003b0a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5896649230164750294, guid: c07d1f0dd18cc7740acd6bb252003b0a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5896649230164750294, guid: c07d1f0dd18cc7740acd6bb252003b0a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5896649230164750294, guid: c07d1f0dd18cc7740acd6bb252003b0a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
