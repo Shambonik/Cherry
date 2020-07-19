@@ -40,6 +40,8 @@ public class ActionScript : MonoBehaviour
                 box.transform.parent.GetComponent<BoxCollider2D>().enabled = false;
                 box.GetComponent<Box>().setBoxtaker(boxtaker);
                 box.GetComponent<Box>().setTaken(true);
+                box.GetComponentInParent<Rigidbody2D>().SetRotation(0);
+                box.GetComponentInParent<Rigidbody2D>().freezeRotation = true;
             }
             else
             {
@@ -47,6 +49,7 @@ public class ActionScript : MonoBehaviour
                 box.transform.parent.GetComponent<BoxCollider2D>().enabled = true;
                 box.GetComponent<Box>().setBoxtaker(null);
                 box.GetComponent<Box>().setTaken(false);
+                box.GetComponentInParent<Rigidbody2D>().freezeRotation = false;
                 box.GetComponent<Box>().rigidbodySetDynamic();
             }
         }

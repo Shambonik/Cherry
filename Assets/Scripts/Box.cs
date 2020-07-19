@@ -44,8 +44,6 @@ public class Box : MonoBehaviour
         //    }
         //}
 
-
-
         if(isTaken)
         {
             transform.parent.position = boxtaker.position;
@@ -74,7 +72,9 @@ public class Box : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Clone")
+        //if(!isTaken)Debug.Log(other.gameObject + " enter");
+        string tag = other.gameObject.tag;
+        if(tag == "Player" || tag == "Clone")
         {
             cosmonaut = other.gameObject.GetComponent<ActionScript>();
             if (cosmonaut.getBox() == null)
@@ -82,13 +82,18 @@ public class Box : MonoBehaviour
                 cosmonaut.setBox(transform.gameObject);
             }
             //isActivity = true;
+        } else {
+            if(tag == "Boxtaker") {
+                cosmonaut = other.GetComponentInParent<ActionScript>();
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if((other.gameObject.tag == "Player" || other.gameObject.tag == "Clone") && !isTaken)
+        string tag = other.gameObject.tag;
+        if((tag == "Player" || tag == "Clone" || tag == "Boxtaker") && !isTaken)
         {
-            cosmonaut.deleteBox();
+            if(cosmonaut.getBox() == transform.gameObject) cosmonaut.deleteBox();
             boxtaker = null;
             cosmonaut = null;
             //isActivity = false;

@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408412544199876574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 1.13, z: -1}
+  m_LocalPosition: {x: 0.15, y: 1.13, z: -5}
   m_LocalScale: {x: 0.8, y: 1.5, z: 1}
   m_Children:
   - {fileID: 5697555076481049091}
@@ -160,11 +160,11 @@ GameObject:
   - component: {fileID: 7984374564190360098}
   m_Layer: 0
   m_Name: boxtaker
-  m_TagString: Untagged
+  m_TagString: boxtaker
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7984374564190360098
 Transform:
   m_ObjectHideFlags: 0
