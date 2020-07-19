@@ -19,7 +19,10 @@ public class PlayerScript : MonoBehaviour
     private CheckCollidersScript checkCollidersScript;
     private bool remembering = false;
     private rememberPointScript remPoint;
-    
+    private bool running = false;
+
+    private Animator animator;
+
 
     void Start()
     {
@@ -31,32 +34,34 @@ public class PlayerScript : MonoBehaviour
         checkGrounded = GetComponentInChildren<CheckGroundedScript>();
         checkCollidersScript = GetComponentInChildren<CheckCollidersScript>();
         remPoint = GameObject.FindGameObjectWithTag("RememberPoint").GetComponent<rememberPointScript>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void FixedUpdate()
     {
-        //buttons = new List<bool> { , ,  };
-        //history.Add(buttons);
-        //action(buttons);
-
         isGrounded = checkGrounded.check();
-        if(remembering) history.Add(new HistoryElement(transform.position, cosmonaut.rotation, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders())));
+        if(remembering) history.Add(new HistoryElement(transform.position, cosmonaut.rotation, (Input.GetKey("f") && !fPrevious), !(Mathf.Abs(rb.velocity.y)<0.5f), new List<Collider2D>(checkCollidersScript.getColliders()), running));
+        running = false;
         if (Input.GetKey("d")) {
             cosmonaut.rotation = Quaternion.Euler(0f, 0f, 0f);
             transform.Translate(run);
-        } else {
-            if (Input.GetKey("a"))
-            {
-                cosmonaut.rotation = Quaternion.Euler(0f, 180f, 0f);
-                transform.Translate(-run);
-            } else {
-                if (Input.GetKey("f"))
-                {
-                    if(!fPrevious) actionScript.action();
-                    fPrevious = true;
-                }
-            }
+            running = true;
         }
+        else if (Input.GetKey("a"))
+        {
+            cosmonaut.rotation = Quaternion.Euler(0f, 180f, 0f);
+            transform.Translate(-run);
+            running = true;
+        }
+        else if (Input.GetKey("f"))
+        {
+            if(!fPrevious) actionScript.action();
+            fPrevious = true;
+        }
+
+
+        animator.SetBool("run", running);
+
 
         if (!Input.GetKey("f")) fPrevious = false;
 

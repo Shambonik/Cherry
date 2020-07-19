@@ -14,6 +14,7 @@ public class CloneScript : MonoBehaviour
     Transform cosmonaut;
     private CameraScript camera;
     private GameObject oldBox;
+    private Animator animator;
 
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class CloneScript : MonoBehaviour
         checkCollidersScript = GetComponentInChildren<CheckCollidersScript>();
         cosmonaut = transform.Find("cosmonaut").transform;
         camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraScript>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -37,12 +39,13 @@ public class CloneScript : MonoBehaviour
                 historyMoment = history[iteration];
                 if (!historyMoment.getJump() && !collidersAreSimilar())
                 {
-                    if (errors > 10) camera.Death(transform.gameObject);
+                    if (errors > 8) camera.Death(transform.gameObject);
                     else errors++;
                 }
                 else errors = 0;
                 transform.position = historyMoment.getPosition();
                 cosmonaut.rotation = historyMoment.getRotation();
+                animator.SetBool("run", historyMoment.getRunning());
                 Debug.Log("Rot" + historyMoment.getRotation().eulerAngles);
                 if (historyMoment.getF())
                 {
