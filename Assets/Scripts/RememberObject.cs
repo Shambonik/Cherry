@@ -9,6 +9,8 @@ public class RememberObject : MonoBehaviour
     private Quaternion rotation;
     private bool activated;
 
+    Transform boxtaker;
+
     public void set()
     {
         position = transform.position;
@@ -20,6 +22,10 @@ public class RememberObject : MonoBehaviour
                 break;
             case "Door":
                 activated = GetComponent<Door>().getIsOpen();
+                break;
+            case "Box":
+                activated = GetComponentInChildren<Box>().getTaken();
+                boxtaker = GetComponentInChildren<Box>().getBoxtaker();
                 break;
         }
         
@@ -39,6 +45,12 @@ public class RememberObject : MonoBehaviour
                 break;
             case "Plate":
                 GetComponent<Plate>().restart();
+                break;
+            case "Box":
+                GetComponentInChildren<Box>().setTaken(activated);
+                GetComponentInChildren<Box>().setBoxtaker(boxtaker);
+                GetComponent<Rigidbody2D>().freezeRotation = activated;
+                GetComponent<BoxCollider2D>().enabled = !activated;
                 break;
         }
     }
