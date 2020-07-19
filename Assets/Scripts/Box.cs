@@ -71,7 +71,7 @@ public class Box : MonoBehaviour
             if (tag == "Player" || tag == "Clone")
             {
                 cosmonaut = other.gameObject.GetComponent<ActionScript>();
-                cosmonaut.transform.Find("Text").gameObject.SetActive(true);
+                if(tag == "Player") cosmonaut.transform.Find("Text").gameObject.SetActive(true);
                 if (cosmonaut.getBox() == null)
                 {
                     cosmonaut.setBox(transform.gameObject);
@@ -95,7 +95,7 @@ public class Box : MonoBehaviour
             string tag = other.gameObject.tag;
             if ((tag == "Player" || tag == "Clone" || tag == "Boxtaker") && !isTaken)
             {
-                cosmonaut.transform.Find("Text").gameObject.SetActive(false);
+                if(tag == "Player") cosmonaut.transform.Find("Text").gameObject.SetActive(false);
                 if ((cosmonaut != null) && (cosmonaut.getBox() == transform.gameObject)) cosmonaut.deleteBox();
                 boxtaker = null;
                 cosmonaut = null;
