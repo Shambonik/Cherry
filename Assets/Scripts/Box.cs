@@ -72,7 +72,6 @@ public class Box : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //if(!isTaken)Debug.Log(other.gameObject + " enter");
         string tag = other.gameObject.tag;
         if(tag == "Player" || tag == "Clone")
         {
@@ -81,7 +80,6 @@ public class Box : MonoBehaviour
             {
                 cosmonaut.setBox(transform.gameObject);
             }
-            //isActivity = true;
         } else {
             if(tag == "Boxtaker") {
                 cosmonaut = other.GetComponentInParent<ActionScript>();
@@ -96,7 +94,6 @@ public class Box : MonoBehaviour
             if(cosmonaut.getBox() == transform.gameObject) cosmonaut.deleteBox();
             boxtaker = null;
             cosmonaut = null;
-            //isActivity = false;
         }
     }
 }

@@ -17,7 +17,7 @@ public class ActionScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         checkGrounded = GetComponentInChildren<CheckGroundedScript>();
         button = null;
-        boxtaker = transform.Find("boxtaker");
+        boxtaker = transform.Find("cosmonaut").Find("boxtaker");
     }
 
     /*
