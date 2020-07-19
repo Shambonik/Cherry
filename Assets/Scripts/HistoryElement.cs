@@ -4,13 +4,13 @@ using UnityEngine;
 
 public struct HistoryElement
 {
-    private Vector2 position;
+    private Vector3 position;
     private bool fPressed;
     private bool jump;
     private List<Collider2D> colliders;
     private Quaternion rotation;
 
-    public HistoryElement(Vector2 pos, Quaternion rot, bool f, bool jump, List<Collider2D> coll)
+    public HistoryElement(Vector3 pos, Quaternion rot, bool f, bool jump, List<Collider2D> coll)
     {
         position = pos;
         rotation = rot;
@@ -19,7 +19,7 @@ public struct HistoryElement
         this.jump = jump;
     }
 
-    public Vector2 getPosition()
+    public Vector3 getPosition()
     {
         return position;
     }
