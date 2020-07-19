@@ -27,11 +27,7 @@ public class ActionScript : MonoBehaviour
      public void action()
      {
         Debug.Log("Action");
-        if (button != null)
-        {
-            button.GetComponent<Button>().setActivated(!button.GetComponent<Button>().getActivated());
-        }
-        else if (box != null)
+        if (box != null)
         {
             Debug.Log("Box");
             if (!box.GetComponent<Box>().getTaken())
@@ -48,6 +44,10 @@ public class ActionScript : MonoBehaviour
             {
                 throwBox();
             }
+        }
+        else if (button != null)
+        {
+            button.GetComponent<Button>().setActivated(!button.GetComponent<Button>().getActivated());
         }
      }
 

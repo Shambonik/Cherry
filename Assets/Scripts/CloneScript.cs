@@ -37,7 +37,7 @@ public class CloneScript : MonoBehaviour
                 historyMoment = history[iteration];
                 if (!historyMoment.getJump() && !collidersAreSimilar())
                 {
-                    if (errors > 4) camera.Death(transform.gameObject);
+                    if (errors > 10) camera.Death(transform.gameObject);
                     else errors++;
                 }
                 else errors = 0;
