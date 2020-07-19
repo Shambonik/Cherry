@@ -23,7 +23,7 @@ public class CheckCollidersScript : MonoBehaviour
             {
                 if (!BlockTags.Contains(hits[j].collider.tag))
                 {
-                    if ((hits[j].collider.tag != transform.parent.tag) && (!colliders.Contains(hits[j].collider))) colliders.Add(hits[j].collider);
+                    if ((hits[j].collider.tag != transform.parent.tag) && (hits[j].collider.transform.parent==null || (hits[j].collider.transform.parent.tag != transform.parent.tag)) && (!colliders.Contains(hits[j].collider))) colliders.Add(hits[j].collider);
                 }
                 else break;
             }

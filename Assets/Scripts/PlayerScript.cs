@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     private CheckCollidersScript checkCollidersScript;
     private bool remembering = false;
     private rememberPointScript remPoint;
+    
 
     void Start()
     {
@@ -73,6 +74,7 @@ public class PlayerScript : MonoBehaviour
                 GameObject clone = Instantiate(copy);
                 clone.GetComponent<CloneScript>().setHistory(history);
                 //clone.transform.position = startPosition;
+                actionScript.setBoxtakerEnabled(false);
                 transform.position = startPosition;
                 remembering = false;
                 history = new List<HistoryElement>();

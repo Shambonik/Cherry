@@ -22,7 +22,7 @@ public class rememberPointScript : MonoBehaviour
                 other.GetComponent<PlayerScript>().startRemember();
                 foreach (CloneScript cloneScript in (CloneScript[])Resources.FindObjectsOfTypeAll<CloneScript>())
                 {
-                    cloneScript.setStartIndex();
+                    cloneScript.remember();
                 }
                 foreach (Transform tr in GameObject.Find("Objects").GetComponentsInChildren<Transform>())
                 {

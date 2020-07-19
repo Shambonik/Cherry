@@ -60,6 +60,16 @@ public class ActionScript : MonoBehaviour
         this.button = button;
     }
 
+    public void setBoxtakerEnabled(bool en)
+    {
+        boxtaker.GetComponent<BoxCollider2D>().enabled = en;
+    }
+
+    public Transform getBoxtaker()
+    {
+        return boxtaker;
+    }
+
     public void deleteButton()
     {
         button = null;

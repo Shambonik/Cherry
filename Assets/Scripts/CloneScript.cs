@@ -11,6 +11,10 @@ public class CloneScript : MonoBehaviour
     private CheckCollidersScript checkCollidersScript;
     private int errors = 0;
     private int startIndex = 0;
+
+    private GameObject oldBox;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +41,24 @@ public class CloneScript : MonoBehaviour
                 transform.position = historyMoment.getPosition();
                 if (historyMoment.getF())
                 {
-                    Debug.Log("HERE");
                     actionScript.action();
                 }
                 iteration++;
             }
-            else transform.gameObject.SetActive(false);
+            else
+            {
+                if (actionScript.getBox() != null)
+                {
+
+                    actionScript.getBox().GetComponent<Box>().setTaken(false);
+                    actionScript.getBox().GetComponent<Box>().setBoxtaker(null);
+                    actionScript.getBox().GetComponentInParent<Rigidbody2D>().freezeRotation = false;
+                    actionScript.getBox().transform.parent.GetComponent<BoxCollider2D>().enabled = true;
+                    actionScript.setBoxtakerEnabled(false);
+                    actionScript.deleteBox();
+                }
+                transform.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -51,15 +67,32 @@ public class CloneScript : MonoBehaviour
         this.history = new List<HistoryElement>(history);
     }
 
-    public void setStartIndex()
+
+    public void remember()
     {
-        startIndex = iteration;
+        if (actionScript != null)
+        {
+            oldBox = actionScript.getBox();
+            startIndex = iteration;
+        }
     }
 
     public void restart()
     {
-        if ((startIndex>0)&&(startIndex >= history.Count)) Destroy(transform.gameObject);
+        if ((startIndex>0)&&(startIndex >= history.Count))
+        {
+            Destroy(transform.gameObject);
+        }
         iteration = startIndex;
+        if (oldBox != null)
+        {
+            actionScript.setBox(oldBox);
+            actionScript.getBox().GetComponent<Box>().setTaken(true);
+            actionScript.getBox().GetComponent<Box>().setBoxtaker(actionScript.getBoxtaker());
+            actionScript.getBox().GetComponentInParent<Rigidbody2D>().freezeRotation = true;
+            actionScript.getBox().transform.parent.GetComponent<BoxCollider2D>().enabled = false;
+            actionScript.setBoxtakerEnabled(true);
+        }
     }
 
     private bool collidersAreSimilar()

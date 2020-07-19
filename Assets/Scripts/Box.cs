@@ -31,19 +31,6 @@ public class Box : MonoBehaviour
             }
         }
 
-        //if(isActivity && Input.GetKeyUp("e") && !isTaked){
-        //    isTaked = true;
-        //    boxtaker.GetComponent<BoxCollider2D>().enabled = true;
-        //    transform.parent.GetComponent<BoxCollider2D>().enabled = false;
-        //} else {
-        //    if(Input.GetKeyUp("e") && isTaked){
-        //        isTaked = false;
-        //        boxtaker.GetComponent<BoxCollider2D>().enabled = false;
-        //        transform.parent.GetComponent<BoxCollider2D>().enabled = true;
-        //        rigidbody.bodyType = RigidbodyType2D.Dynamic;
-        //    }
-        //}
-
         if(isTaken)
         {
             transform.parent.position = boxtaker.position;
@@ -65,6 +52,11 @@ public class Box : MonoBehaviour
         return isTaken;
     }
 
+    public Transform getBoxtaker()
+    {
+        return boxtaker;
+    }
+
     public void setBoxtaker(Transform taker)
     {
         boxtaker = taker;
@@ -73,30 +65,40 @@ public class Box : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //if(!isTaken)Debug.Log(other.gameObject + " enter");
-        string tag = other.gameObject.tag;
-        if(tag == "Player" || tag == "Clone")
+        if (!isTaken)
         {
-            cosmonaut = other.gameObject.GetComponent<ActionScript>();
-            if (cosmonaut.getBox() == null)
+            string tag = other.gameObject.tag;
+            if (tag == "Player" || tag == "Clone")
             {
-                cosmonaut.setBox(transform.gameObject);
+                cosmonaut = other.gameObject.GetComponent<ActionScript>();
+                if (cosmonaut.getBox() == null)
+                {
+                    cosmonaut.setBox(transform.gameObject);
+                }
+                //isActivity = true;
             }
-            //isActivity = true;
-        } else {
-            if(tag == "Boxtaker") {
-                cosmonaut = other.GetComponentInParent<ActionScript>();
+            else
+            {
+                if (tag == "Boxtaker")
+                {
+                    cosmonaut = other.GetComponentInParent<ActionScript>();
+                }
             }
         }
     }
 
+
     private void OnTriggerExit2D(Collider2D other) {
-        string tag = other.gameObject.tag;
-        if((tag == "Player" || tag == "Clone" || tag == "Boxtaker") && !isTaken)
+        if (!isTaken)
         {
-            if(cosmonaut.getBox() == transform.gameObject) cosmonaut.deleteBox();
-            boxtaker = null;
-            cosmonaut = null;
-            //isActivity = false;
+            string tag = other.gameObject.tag;
+            if ((tag == "Player" || tag == "Clone" || tag == "Boxtaker") && !isTaken)
+            {
+                if ((cosmonaut != null) && (cosmonaut.getBox() == transform.gameObject)) cosmonaut.deleteBox();
+                boxtaker = null;
+                cosmonaut = null;
+                //isActivity = false;
+            }
         }
     }
 }
